@@ -14,12 +14,12 @@ function NewItem(props) {
     <div>
       <input
         type="text"
-        value={props.input}
+        value={props.value}
         onChange={(event) => props.onClick(event)}
         placeholder="Add Task"
       />
 
-      <button type="submit" name="list" onClick={() => props.onAdd()}>
+      <button type="submit" name="list" onClick={props.onAdd}>
         +
       </button>
     </div>
@@ -44,12 +44,12 @@ class TodoList extends React.Component {
   addNewItem() {
     this.setState((state) => ({
       tasks: [...state.tasks, state.input],
-      input: " "
+      input: ""
     }));
+    console.log(this.state.input);
   }
 
   deleteItem(task) {
-    console.log(this.state.tasks.filter((item) => item !== task));
     this.setState((state) => ({
       tasks: this.state.tasks.filter((item) => item !== task)
     }));
@@ -65,7 +65,7 @@ class TodoList extends React.Component {
         </ul>
 
         <NewItem
-          value={this.input}
+          value={this.state.input}
           onClick={(event) => this.handleChange(event)}
           onAdd={() => this.addNewItem()}
         />
