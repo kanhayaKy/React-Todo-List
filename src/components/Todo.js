@@ -46,13 +46,16 @@ class TodoList extends React.Component {
       tasks: [...state.tasks, state.input],
       input: ""
     }));
-    console.log(this.state.input);
   }
 
-  deleteItem(task) {
-    this.setState((state) => ({
-      tasks: this.state.tasks.filter((item) => item !== task)
-    }));
+  deleteItem(index) {
+    this.setState((state) => {
+      const tasks = [...this.state.tasks];
+      tasks.splice(index, 1);
+      return {
+        tasks: tasks
+      };
+    });
   }
 
   render() {
@@ -60,7 +63,7 @@ class TodoList extends React.Component {
       <div>
         <ul>
           {this.state.tasks.map((task, i) => (
-            <List value={task} onClick={() => this.deleteItem(task)} key={i} />
+            <List value={task} onClick={() => this.deleteItem(i)} key={i} />
           ))}
         </ul>
 
