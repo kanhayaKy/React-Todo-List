@@ -3,7 +3,7 @@ import React from "react";
 function List(props) {
   return (
     <li className="item">
-      <input type="checkbox" onChange={() => props.onClick()} />
+      <input type="checkbox" checked={false} onChange={() => props.onClick()} />
       {props.value}
     </li>
   );
@@ -59,8 +59,8 @@ class TodoList extends React.Component {
     return (
       <div>
         <ul>
-          {this.state.tasks.map((task) => (
-            <List value={task} onClick={() => this.deleteItem(task)} />
+          {this.state.tasks.map((task, i) => (
+            <List value={task} onClick={() => this.deleteItem(task)} key={i} />
           ))}
         </ul>
 
